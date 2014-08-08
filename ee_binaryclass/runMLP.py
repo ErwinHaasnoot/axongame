@@ -13,8 +13,8 @@ samples = np.fromiter(((funcs.normalize(np.array(k[:10])),0 if len(k) < 20 else 
 print 'Learning from {} samples'.format(samples.size)
 network = MLP(10,10,10,10,1)
 
-out = network.learn(samples, epochs = samples.size * 400) #40 million epochs.. Too many?
-network.storeWeights('Run1 10 10 1.w')
+#out = network.learn(samples, epochs = samples.size * 400) #40 million epochs.. Too many?
+network.loadWeights('Run1 10 10 1.w')
 
 out = network.test(samples)
 stepf = lambda x: 0 if x < .5 else 1

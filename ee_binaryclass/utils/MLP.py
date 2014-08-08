@@ -10,7 +10,7 @@
 # -----------------------------------------------------------------------------
 import numpy as np
 
-def sigmoid(x):
+def sigmoid(x):   
     ''' Sigmoid like function using tanh '''
     return np.tanh(x)
 
