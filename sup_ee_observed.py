@@ -93,7 +93,7 @@ for key in big:
     x.append(var2[key])
     y.append(av1[key])
 
-#find percentile values
+#find percentile values
 prcentiles_x=[]
 for p in range(100):
     prcentiles_x.append(ssm.scoreatpercentile(x,p))
