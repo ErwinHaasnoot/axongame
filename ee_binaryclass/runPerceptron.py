@@ -7,18 +7,15 @@ import matplotlib.pyplot as plt
 
 plt.close('all')
 #Load data
-#print "loading data"
-#data = funcs.loadData('/home/erwin/workspace/ee_bootstrap/data_by_cookie.json')
-
+print "loading data"
+data = funcs.loadData('../data_by_cookie.json')
 
 #Generate artificial training data
 #mu = np.mean([k[:10] for k in data if len(k) >= 10],axis=0)
 
-signalf = lambda x: 0 if x[2] < 18000 else 1
-training_data = funcs.generateSamples(500000, signalf)
+#signalf = lambda x: 0 if x[2] < 18000 else 1
+#training_data = funcs.generateSamples(500000, signalf)
 
-
-print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))
 #Set up perceptron
 m = 100
 s = 10
@@ -27,10 +24,11 @@ eta = 0.2
 n = 100000
 dPrimes = [0]*m
 endweights = []
+training_data = [(np.array(k[:s]),0 if len(k) < 2*s else 1) for k in data if len(k) >= s]
+print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))
 for i in xrange(m):
     #print 'Preparing training data'
     w = 2 * np.random.rand(s) - 1
-    #training_data = [(np.array(k[:s]),0 if len(k) < 2*s else 1) for k in data if len(k) >= s]
     stepf = lambda x: 0 if x < 0 else 1
     
     #print 'Training perceptron - n = {} and s = {}'.format(n,s)
@@ -57,8 +55,8 @@ for i in xrange(m):
     print 'Hit % = {}, but false alarm % = {}, d\' = {}'.format(percHits,falseAlarm, dPrime)   
     #print w # print the weights
 
-print dPrimes
-print np.mean(dPrimes),np.std(dPrimes)
+#print dPrimes
+#print np.mean(dPrimes),np.std(dPrimes)
 
 plt.close()
 fig = plt.figure()
@@ -70,3 +68,4 @@ for k in endweights:
 plt.figure()
 plt.ylim([-1,1])
 plt.plot(np.mean(endweights,axis=0))
+plt.show()

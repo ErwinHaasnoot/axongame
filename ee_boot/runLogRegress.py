@@ -19,7 +19,7 @@ import utils.observed as os
 
 #Load data
 print "loading data"
-data = funcs.loadData('/home/erwin/workspace/ee_bootstrap/data_by_cookie.json')
+data = funcs.loadData('../data_by_cookie.json')
 
 outfolder = 'files/LogRegress'
 #properData  = [[data[k][l][0] for l in collections.OrderedDict(sorted(data[k].items()))] for k in data]

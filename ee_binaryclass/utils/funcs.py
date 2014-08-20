@@ -128,7 +128,8 @@ def generateSamples(l,signalf):
         data[:,i] = mu[i] + sigma * data[:,i]
     samples = np.zeros(l,dtype=[('input',  float, 10), ('output', float, 1)])
     for i in xrange(l):
-        normdata = normalize(data[i])
+        #normdata = normalize(data[i])
+        normdata = data[i]
         samples[i] = np.array(normdata),signalf(normdata)
     print np.mean(samples['output'])
     return samples
