@@ -6,7 +6,7 @@ import collections
 import pickle
 print 'Loading data...'
 
-location = '../data_by_cookie_slim.json'
+location = '../data_by_cookie.json'
 fh=open(location)
 data=json.load(fh)
 
