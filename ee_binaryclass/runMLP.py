@@ -13,7 +13,7 @@ samples = np.fromiter(((funcs.normalize(np.array(k[:10])),0 if len(k) < 20 else 
 print 'Learning from {} samples'.format(samples.size)
 network = MLP(10,10,10,10,1)
 
-#out = network.learn(samples, epochs = samples.size * 400) #40 million epochs for full dataset.. Too many?
+#out = network.learn(samples, epochs = samples.size * 400) #40 million epochs for full dataset.. Too many?
 network.loadWeights('Run1 10 10 1.w')
 
 out = network.test(samples)

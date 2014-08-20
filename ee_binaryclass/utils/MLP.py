@@ -111,7 +111,7 @@ class MLP:
             out[i] = (samples['input'][i],samples['output'][i],self.propagate_forward(samples['input'][i]))
             #o = self.propagate_forward( samples['input'][i] )
             #print i, samples['input'][i], '%.2f' % out[i][2],
-            print '%.2f (expected %.2f)' % (out[i][2],samples['output'][i])
+            #print '{} (expected {})'.format(out[i][2],samples['output'][i])
                 
         return out
                
@@ -130,4 +130,14 @@ class MLP:
             return True
         finally:
             return False
+    
+    def learnLoop(self, samples, iterations, epochs, processResults):
+        output = []
+        for i in range(iterations):
+            self.reset()
+            
+            results = self.learn(samples, epochs)
+            out = processResults(results)
+            output.append(out)
+        return output
 # -----------------------------------------------------------------------------
