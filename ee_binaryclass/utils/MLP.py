@@ -101,7 +101,7 @@ class MLP:
             self.propagate_forward( samples['input'][n] )
             self.propagate_backward( samples['output'][n], lrate, momentum )
         # Test
-        print
+        #print
         return self.test(samples)
         
     def test(self, samples):
@@ -123,13 +123,18 @@ class MLP:
         finally:
             return False
         
-    def loadWeights(self,filename):
-        import pickle
-        try:
-            self.weights = pickle.load(open(filename,'rb'))
+    def loadWeights(self,filename = False, weights = False):
+        if weights == False:
+            import pickle
+            try:
+                self.weights = pickle.load(open(filename,'rb'))
+                return True
+            finally:
+                return False
+        else if filename == False:
+            self.weights = weights
             return True
-        finally:
-            return False
+        
     
     def learnLoop(self, samples, iterations, epochs, processResults):
         output = []
@@ -137,7 +142,7 @@ class MLP:
             self.reset()
             
             results = self.learn(samples, epochs)
-            out = processResults(results)
+            out = processResults(self,results)
             output.append(out)
         return output
 # -----------------------------------------------------------------------------

@@ -135,8 +135,11 @@ def generateSamples(l,signalf):
     return samples
 
 def dprime(hitRate, falseAlarmRate):
-    if len(hitRate) == 1:
-        hitRate = [hitRate]
-        falseAlarmRate = [falseAlarmRate]
-    
-    return [st.norm.ppf(hitRate[i]) - st.norm.ppf(falseAlarmRate[i]) for i in range(len(hitRate))]
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+        if not isinstance(hitRate, list):
+            hitRate = [hitRate]
+            falseAlarmRate = [falseAlarmRate]
+        
+        return [st.norm.ppf(hitRate[i]) - st.norm.ppf(falseAlarmRate[i]) for i in range(len(hitRate))]
