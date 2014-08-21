@@ -43,7 +43,7 @@ def organiseData(data, windows,rankFilter = 0):
 def filterByPercRank(data, rank):
     maxData = [max(k) for k in data]
     prcentiles = np.percentile(maxData,rank)
-    print prcentiles
+    #print prcentiles
     
     return [data[i] for i in range(len(data)) if maxData[i] > prcentiles]
 
@@ -109,3 +109,37 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2):
           
     plt.show()
     
+def normalize(v):
+    norm= np.linalg.norm(v)
+    if norm == 0:
+        return v
+    else:
+        return v / norm
+    
+def generateSamples(l,signalf):
+    #Generate artificial training data
+    
+    mu = [9256.77966807,  14535.38014538,  17875.40788667,  19925.21490191,
+      21309.08896041,  22153.02139166,  22965.43790506,  23497.02055964,
+      24077.39869066,  25870.68556227]
+    sigma = 1000
+    data = np.random.randn(l,10)
+    for i in xrange(10):
+        data[:,i] = mu[i] + sigma * data[:,i]
+    samples = np.zeros(l,dtype=[('input',  float, 10), ('output', float, 1)])
+    for i in xrange(l):
+        #normdata = normalize(data[i])
+        normdata = data[i]
+        samples[i] = np.array(normdata),signalf(normdata)
+    print np.mean(samples['output'])
+    return samples
+
+def dprime(hitRate, falseAlarmRate):
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+        if not isinstance(hitRate, list):
+            hitRate = [hitRate]
+            falseAlarmRate = [falseAlarmRate]
+        
+        return [st.norm.ppf(hitRate[i]) - st.norm.ppf(falseAlarmRate[i]) for i in range(len(hitRate))]
