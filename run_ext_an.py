@@ -4,7 +4,7 @@
 import sys
 import os
 
-dataFile = 'data_by_cookie_slim.json'
+dataFile = 'data_by_cookie.json'
 outputFolder = 'analysis1'
 outputSuffix = '_run1'
 sys.argv = [dataFile, outputFolder, outputSuffix]
