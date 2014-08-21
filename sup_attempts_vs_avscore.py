@@ -1,3 +1,18 @@
+savefig('explore_exploit_scatterheatmap.png', dpi=300, facecolor='w', edgecolor='w',
+        orientation='portrait', papertype=None, format=None,
+        transparent=False, bbox_inches='tight', pad_inches=0.1) 
+savefig('explore_exploit_scatterheatmap.png', dpi=300, facecolor='w', edgecolor='w',
+        orientation='portrait', papertype=None, format=None,
+        transparent=False, bbox_inches='tight', pad_inches=0.1) 
+savefig('explore_exploit_scatterheatmap.png', dpi=300, facecolor='w', edgecolor='w',
+        orientation='portrait', papertype=None, format=None,
+        transparent=False, bbox_inches='tight', pad_inches=0.1) 
+savefig('explore_exploit_scatterheatmap.png', dpi=300, facecolor='w', edgecolor='w',
+        orientation='portrait', papertype=None, format=None,
+        transparent=False, bbox_inches='tight', pad_inches=0.1) 
+savefig('explore_exploit_scatterheatmap.png', dpi=300, facecolor='w', edgecolor='w',
+        orientation='portrait', papertype=None, format=None,
+        transparent=False, bbox_inches='tight', pad_inches=0.1) 
 #make Figure 2
 #and some others
 

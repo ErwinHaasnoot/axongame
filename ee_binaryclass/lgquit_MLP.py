@@ -13,8 +13,18 @@ iterations = 100
 epochmult = 400
 filename = 'lgquit_MLP_full_run.p'
 print 'Quit locations: {}\ntime threshold: {} hours\niterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}'.format(timesize-1,timethresh,iterations,epochmult,filename)
-location = '../data_by_cookie.json'
-fh=open(location)
+import sys
+if len(sys.argv[1]) == 1:  
+    datafile = '../data_by_cookie_slim.json'
+    outputFolder = '.'
+    outputSuffix = ''
+else:
+    datafile = sys.argv[0]
+    outputFolder = sys.argv[1]
+    outputSuffix = sys.argv[2]
+filename = 'lgquit'
+outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
+fh=open(datafile)
 data=json.load(fh)
 
 #Init values
@@ -55,11 +65,11 @@ def processResults(network,results):
 out = network.learnLoop(samples, iterations = iterations, epochs = epochmult * samples.size, processResults = processResults) #40 million epochs for full dataset.. Too many?
 #results = network.learn(samples, epochs = samples.size * 400) 
 
-pickle.dump(out,open(filename, 'wb'))
+pickle.dump(out,open(outputFile, 'wb'))
 #print out
 
 #results = network.test(samples)
-dprimes = pickle.load(open(filename,'rb'))
+dprimes = pickle.load(open(outputFile,'rb'))
 #set nan to 0
 
 #Set NaN to 0 (tends to be Inf - Inf, so 0 makes sense). -Inf to 0 as well, 

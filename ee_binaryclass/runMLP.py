@@ -2,17 +2,26 @@ from utils import funcs
 from utils.MLP import MLP
 import numpy as np
 import pickle
-
+import sys
 print 'Predict play of 20 games or more from 10 games analysis with MLP'
-data = funcs.loadData('../data_by_cookie.json')
+if len(sys.argv[1]) == 1:  
+    datafile = '../data_by_cookie_slim.json'
+    outputFolder = '.'
+    outputSuffix = ''
+else:
+    datafile = sys.argv[0]
+    outputFolder = sys.argv[1]
+    outputSuffix = sys.argv[2]
+filename = 'runMLP'
+outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
+data = funcs.loadData(datafile)
 
 #Filter away bottom 75%
 data = funcs.filterByPercRank(data, 75)
 
 iterations = 100
 epochmult = 400
-filename = 'runMLP_full_run.p'
-print 'iterations: {}\nMultiplier Samplesize Epochs: {}\n output file: {}'.format(iterations,epochmult,filename)
+print 'iterations: {}\nMultiplier Samplesize Epochs: {}\n output file: {}'.format(iterations,epochmult,outputFile)
 
 
 #Get first 10 values and try to decide whether people will keep on playing past 20 games
@@ -33,11 +42,11 @@ def processResults(network,results):
 #print 'Hit % = {}, but false alarm % = {}, d\' = {}'.format(percHits,falseAlarm, dPrime)  
 out = network.learnLoop(samples, iterations = iterations, epochs = epochmult * samples.size, processResults = processResults) #40 million epochs for full dataset.. Too many? 
 
-pickle.dump(out,open(filename, 'wb'))
+pickle.dump(out,open(outputFile, 'wb'))
 #print out
 
 #results = network.test(samples)
-dprimes = pickle.load(open(filename,'rb'))
+dprimes = pickle.load(open(outputFile,'rb'))
 #set nan to 0
 
 dprimes = [[0 if np.isnan(i) or np.isinf(i)  else i for i in k[2]] for k in dprimes]   

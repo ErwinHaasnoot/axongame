@@ -5,13 +5,23 @@ import scipy.stats as st
 from random import choice
 import matplotlib.pyplot as plt
 import pickle
+import sys
+if len(sys.argv[1]) == 1:  
+    datafile = '../data_by_cookie_slim.json'
+    outputFolder = '.'
+    outputSuffix = ''
+else:
+    datafile = sys.argv[0]
+    outputFolder = sys.argv[1]
+    outputSuffix = sys.argv[2]
+filename = 'runPerceptron'
+outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
 
 plt.close('all')
 #Load data
 print 'Perceptron quit after 20 from 10 games with Perceptron'
 
-data = funcs.loadData('../data_by_cookie.json')
-filename = 'runPerceptron_full_data.p'
+data = funcs.loadData(datafile)
 
 #Generate artificial training data
 #mu = np.mean([k[:10] for k in data if len(k) >= 10],axis=0)
@@ -20,18 +30,18 @@ filename = 'runPerceptron_full_data.p'
 #training_data = funcs.generateSamples(500000, signalf)
 
 #Set up perceptron
-m = 100 # iterations
+m = 10 # iterations
 s = 10 # games
 errors = [] # errors
 eta = 0.2 # learning rate
-epochmult = 400 # sampling rate
+epochmult = 4 # sampling rate
 dPrimes = [0]*m #
 endweights = []
 out = []
 training_data = [(np.array(k[:s]),0 if len(k) < 2*s else 1) for k in data if len(k) >= s]
 n = len(training_data) * epochmult
 
-print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(m,epochmult,filename)
+print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(m,epochmult,outputFile)
 
 print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))
 print 'Learning from {} samples...'.format(len(training_data))
@@ -65,11 +75,11 @@ for i in xrange(m):
     #print w # print the weights
     
     
-pickle.dump(out,open(filename, 'wb'))
+pickle.dump(out,open(outputFile, 'wb'))
 #print out
 
 #results = network.test(samples)
-dprimes = pickle.load(open(filename,'rb'))
+dprimes = pickle.load(open(outputFile,'rb'))
 #set nan to 0 
   
     
