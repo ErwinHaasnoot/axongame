@@ -51,7 +51,9 @@ def loadData(location):
 def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2):
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
-    
+    print 'FUCKING HELL'
+    print
+    print
     plt.close('all')
     Z_obs = np.zeros((len(windowSizes1),len(windowSizes2)))
     Z_lower = np.zeros((len(windowSizes1),len(windowSizes2)))
@@ -147,3 +149,4 @@ def ensurePath(path):
     import os
     if not os.path.exists(path):
         os.makedirs(path)
+

@@ -1,10 +1,16 @@
 #Load current run settings
 import sys
-datafile = sys.argv[0]
-outputFolder = sys.argv[1]
-outputSuffix = sys.argv[2]
-iterations = sys.argv[3]
-epochmult = sys.argv[4]
+
+dataFile = 'data_by_cookie_slim.json'
+outputFolder = 'analysis1'
+outputSuffix = '_run1'
+iterations = 2
+epochmult = 40
+# datafile = sys.argv[0]
+# outputFolder = sys.argv[1]
+# outputSuffix = sys.argv[2]
+# iterations = sys.argv[3]
+# epochmult = sys.argv[4]
 
 #Import relevant modules
 
