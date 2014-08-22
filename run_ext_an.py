@@ -9,25 +9,25 @@ dataFile = 'data_by_cookie_slim.json'
 outputFolder = 'analysis1'
 outputSuffix = '_run1'
 iterations = 2
-epochmult = 4
+epochmult = 40
 sys.argv = [dataFile, outputFolder, outputSuffix, iterations, epochmult]
 
 funcs.ensurePath(outputFolder)
 
-#Run perceptron analysis
-execfile('ee_binaryclass/runPerceptron.py')
+# #Run perceptron analysis
+# execfile('ee_binaryclass/runPerceptron.py')
 
-#Run MLP analysis 
-execfile('ee_binaryclass/runMLP.py')
+# #Run MLP analysis 
+# execfile('ee_binaryclass/runMLP.py')
 
-#Run local/global quit analysis with MLP
-execfile('ee_binaryclass/lgquit_MLP.py')
+# #Run local/global quit analysis with MLP
+# execfile('ee_binaryclass/lgquit_MLP.py')
 
-funcs.ensurePath(outputFolder + '/logRegress')
-funcs.ensurePath(outputFolder + '/varMean')
+# funcs.ensurePath(outputFolder + '/logRegress')
+# funcs.ensurePath(outputFolder + '/varMean')
 
-execfile('ee_boot/runLogRegress.py')
-execfile('ee_boot/runVarMean.py')
+# execfile('ee_boot/runLogRegress.py')
+# execfile('ee_boot/runVarMean.py')
 
 #Create graphs
-#execfile('ext_an_graphs.py')
+execfile('graphs/ee_bootGraphs.py')

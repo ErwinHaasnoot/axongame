@@ -13,8 +13,8 @@ if len(sys.argv[1]) == 1:
     datafile = '../data_by_cookie_slim.json'
     outputFolder = '.'
     outputSuffix = ''
-    iterations = 10
-    epochmult = 4
+    iterations = 1000
+    epochmult = 40
 else:
     datafile = sys.argv[0]
     outputFolder = sys.argv[1]

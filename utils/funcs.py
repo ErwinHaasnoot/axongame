@@ -5,10 +5,6 @@ import numpy as np
 import scipy.stats as st
 from scipy.stats.stats import pearsonr
 import scipy.stats.mstats as ssm
-#import matplotlib.pyplot as plt
-#from mpl_toolkits.mplot3d import Axes3D
-#from pylab import * #i know I shouldn't do this
-#from matplotlib import cm
 import random
 #####functions-------------------------------------
 def sampleWr(population, k):
@@ -53,7 +49,10 @@ def loadData(location):
     return [[data[k][l][0] for l in collections.OrderedDict(sorted(data[k].items()))] for k in data]
     
 def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2):
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
     
+    plt.close('all')
     Z_obs = np.zeros((len(windowSizes1),len(windowSizes2)))
     Z_lower = np.zeros((len(windowSizes1),len(windowSizes2)))
     Z_boot = np.zeros((len(windowSizes1),len(windowSizes2)))
@@ -101,13 +100,13 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2):
     #ax.plot_wireframe(X, Y, Z_boot, rstride=1, cstride=1)
     ax = fig1.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_obs, rstride=1, cstride=1)
-    ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
+    #ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
     
     fig2 = plt.figure()
     ax = fig2.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
           
-    plt.show()
+    #plt.show()
     
 def normalize(v):
     norm= np.linalg.norm(v)
