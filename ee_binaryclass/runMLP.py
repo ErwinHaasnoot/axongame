@@ -8,10 +8,14 @@ if len(sys.argv[1]) == 1:
     datafile = '../data_by_cookie_slim.json'
     outputFolder = '.'
     outputSuffix = ''
+    iterations = 10
+    epochmult = 4
 else:
     datafile = sys.argv[0]
     outputFolder = sys.argv[1]
     outputSuffix = sys.argv[2]
+    iterations = sys.argv[3]
+    epochmult = sys.argv[4]
 filename = 'runMLP'
 outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
 data = funcs.loadData(datafile)
@@ -19,8 +23,6 @@ data = funcs.loadData(datafile)
 #Filter away bottom 75%
 data = funcs.filterByPercRank(data, 75)
 
-iterations = 100
-epochmult = 400
 print 'iterations: {}\nMultiplier Samplesize Epochs: {}\n output file: {}'.format(iterations,epochmult,outputFile)
 
 

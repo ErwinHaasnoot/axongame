@@ -4,26 +4,28 @@ import numpy as np
 import json
 import collections
 import pickle
-
-
-print 'Local vs Global quit analysis with MLP'
-timethresh = 2
-timesize = 10
-iterations = 100
-epochmult = 400
-filename = 'lgquit_MLP_full_run.p'
-print 'Quit locations: {}\ntime threshold: {} hours\niterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}'.format(timesize-1,timethresh,iterations,epochmult,filename)
 import sys
 if len(sys.argv[1]) == 1:  
     datafile = '../data_by_cookie_slim.json'
     outputFolder = '.'
     outputSuffix = ''
+    iterations = 10
+    epochmult = 4
 else:
     datafile = sys.argv[0]
     outputFolder = sys.argv[1]
     outputSuffix = sys.argv[2]
+    iterations = sys.argv[3]
+    epochmult = sys.argv[4]
+
+print 'Local vs Global quit analysis with MLP'
+timethresh = 2
+timesize = 10
 filename = 'lgquit'
 outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
+
+print 'Quit locations: {}\ntime threshold: {} hours\niterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}'.format(timesize-1,timethresh,iterations,epochmult,outputFile)
+
 fh=open(datafile)
 data=json.load(fh)
 

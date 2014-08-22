@@ -29,9 +29,9 @@ def runBoot(data, runs=1000, windowSizes1 = [5], windowSizes2 = [5], rankFilter 
             #Organize bootdata
             bootdata,n = funcs.organiseData(data, first_plays + second_plays, rankFilter)
             
-            print "Starting bootstrap calculations for group size " + str(window1) + "," + str(window2)
+            #print "Starting bootstrap calculations for group size " + str(window1) + "," + str(window2)
             for booti in xrange(runs):
-                print "iteration " +str(booti) + " of " + str(runs)
+                #print "iteration " +str(booti) + " of " + str(runs)
                 
                 first = [funcs.sampleWr(bootdata[key],n) for key in first_plays]
                 second = [funcs.sampleWr(bootdata[key],n) for key in second_plays]
@@ -43,8 +43,8 @@ def runBoot(data, runs=1000, windowSizes1 = [5], windowSizes2 = [5], rankFilter 
             
                 #pearson r correlation
                 a,b = pearsonr(x,y)
-                print "Boot %i" % booti 
-                print "r = %.2f, p = %.2f" % (a,b)
+                #print "Boot %i" % booti 
+                #print "r = %.2f, p = %.2f" % (a,b)
                 
                 bootrec[0,i1, i2, booti] = a
     

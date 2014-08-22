@@ -1,23 +1,28 @@
 import utils.funcs as funcs
 import numpy as np
 import scipy.stats as st
-#from numpy import array, dot, random, mean
 from random import choice
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import pickle
 import sys
+
 if len(sys.argv[1]) == 1:  
     datafile = '../data_by_cookie_slim.json'
     outputFolder = '.'
     outputSuffix = ''
+    iterations = 10
+    epochmult = 4
 else:
     datafile = sys.argv[0]
     outputFolder = sys.argv[1]
     outputSuffix = sys.argv[2]
+    iterations = sys.argv[3]
+    epochmult = sys.argv[4]
+
 filename = 'runPerceptron'
 outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
 
-plt.close('all')
+#plt.close('all')
 #Load data
 print 'Perceptron quit after 20 from 10 games with Perceptron'
 
@@ -30,22 +35,20 @@ data = funcs.loadData(datafile)
 #training_data = funcs.generateSamples(500000, signalf)
 
 #Set up perceptron
-m = 10 # iterations
 s = 10 # games
 errors = [] # errors
 eta = 0.2 # learning rate
-epochmult = 4 # sampling rate
-dPrimes = [0]*m #
+dPrimes = [0]*iterations #
 endweights = []
 out = []
 training_data = [(np.array(k[:s]),0 if len(k) < 2*s else 1) for k in data if len(k) >= s]
 n = len(training_data) * epochmult
 
-print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(m,epochmult,outputFile)
+print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(iterations,epochmult,outputFile)
 
 print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))
 print 'Learning from {} samples...'.format(len(training_data))
-for i in xrange(m):
+for i in xrange(iterations):
     #print 'Preparing training data'
     w = 2 * np.random.rand(s) - 1
     stepf = lambda x: 0 if x < 0 else 1

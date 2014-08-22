@@ -5,10 +5,10 @@ import numpy as np
 import scipy.stats as st
 from scipy.stats.stats import pearsonr
 import scipy.stats.mstats as ssm
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from pylab import * #i know I shouldn't do this
-from matplotlib import cm
+#import matplotlib.pyplot as plt
+#from mpl_toolkits.mplot3d import Axes3D
+#from pylab import * #i know I shouldn't do this
+#from matplotlib import cm
 import random
 #####functions-------------------------------------
 def sampleWr(population, k):
@@ -143,3 +143,8 @@ def dprime(hitRate, falseAlarmRate):
             falseAlarmRate = [falseAlarmRate]
         
         return [st.norm.ppf(hitRate[i]) - st.norm.ppf(falseAlarmRate[i]) for i in range(len(hitRate))]
+        
+def ensurePath(path):
+    import os
+    if not os.path.exists(path):
+        os.makedirs(path)

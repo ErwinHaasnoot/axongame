@@ -131,7 +131,7 @@ class MLP:
                 return True
             finally:
                 return False
-        elif filename == False:
+        elif filename == False:
             self.weights = weights
             return True
         

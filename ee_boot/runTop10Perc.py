@@ -28,10 +28,8 @@ windowSizes2 = range(5,30,5)    # Sizes of attempt group 2
 
 print "OBSERVED DATA"
 os.runObs(data, windowSizes1, windowSizes2,outfolder, 90)
-#execfile("sup_ee_boot_varxy.py")
 
 print "BOOTSTRAP"
 bootrec = bs.runBoot(data, 20, windowSizes1, windowSizes2, 90)
-#execfile("sup_ee_observed_varxy.py")
 
 funcs.drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2)

@@ -23,7 +23,7 @@ def runObs(data, windowSizes1 = [5], windowSizes2 =[5],outfolder ='.', rankFilte
                         
         # --------------------------------------------
             # look at subsample of people who played more than x times   
-            print "organising data"
+            #print "organising data"
             big = [k for k in data if len(k) >= total_attempts]
             # --------------------------------------------
             #calc dict of maximum score for each player(=each key)
@@ -37,7 +37,7 @@ def runObs(data, windowSizes1 = [5], windowSizes2 =[5],outfolder ='.', rankFilte
             
             #construct vaiables dicts
             
-            print "calculating summary stats"
+            #print "calculating summary stats"
             #for each player make two lists, of plays 1-5 (first) and 6-10 (second)
             #and calculate summary stats av1,var1 and av2, var2
             
@@ -67,9 +67,9 @@ def runObs(data, windowSizes1 = [5], windowSizes2 =[5],outfolder ='.', rankFilte
             #xlist=[bisect.bisect(prcentiles_x,k) for k in x]
             #ylist=[bisect.bisect(prcentiles_y,k) for k in y]
                    
-            print "saving data"
+            #print "saving data"
             pickle.dump(x, open(outfolder + '/save_a5_xlist' + str(window1) + "," + str(window2) +'.p', 'wb'))
             pickle.dump(y, open(outfolder + '/save_a5_ylist' + str(window1) + "," + str(window2) +'.p', 'wb'))
             
-            print "mean x: ",np.mean(x)
-            print "mean y: ",np.mean(y)
+            #print "mean x: ",np.mean(x)
+            #print "mean y: ",np.mean(y)
