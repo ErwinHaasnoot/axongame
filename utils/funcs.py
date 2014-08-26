@@ -101,7 +101,7 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     ax.plot_surface(X, Y, Z_obs, rstride=1, cstride=1)
     #ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
     if figureName != False:
-        savefig(outfolder+'/cor_'+figureName, bbox_inches='tight')
+        plt.savefig(outfolder+'/cor_'+figureName, bbox_inches='tight')
     fig2 = plt.figure()
     ax = fig2.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
@@ -109,7 +109,7 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     if figureName == False:
         plt.show()
     else:
-        savefig(outfolder+'/std_'+figureName, bbox_inches='tight')
+        plt.savefig(outfolder+'/std_'+figureName, bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)
