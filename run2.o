@@ -1,0 +1,152 @@
+Perceptron quit after 20 from 10 games with Perceptron
+iterations: 100
+Multiplier Samplesize Epochs: 40
+output file: analysis2/runPerceptron_run1.p
+
+Overall plays over 20 plays: 0.27743902439
+Learning from 2624 samples...
+
+Results:
+Mean d' score for each quit opportunity: [0.32457417582417586]
+Std : [0.34728242973492951]
+
+
+iterations: 100
+Multiplier Samplesize Epochs: 40
+ output file: analysis2/runMLP_run1.p
+Learning from 1923 samples...
+
+Results:
+Mean d' score for each quit opportunity: [0.030053384220260656]
+Std : [0.082859941327879424]
+
+
+Local vs Global quit analysis with MLP
+Quit locations: 9
+time threshold: 2 hours
+iterations: 100
+Multiplier Samplesize Epochs: 40
+output file: analysis2/lgquit_run1.p
+Learning from 393 samples...
+
+Results:
+Mean d' score for each quit opportunity: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0061080152835464507]
+Std : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.060773984727839549]
+
+
+Running log regression analysis of variance vs mean, 1st order
+iterations: 100
+output folder: analysis2/logRegress
+
+OBSERVED DATA
+BOOTSTRAP
+
+
+Running analysis of variance vs mean correlation, 1st order
+iterations: 100
+output folder: analysis2/varMean
+
+OBSERVED DATA
+BOOTSTRAP
+
+
+Analyzing 5 - 5
+r = -0.022, p = 0.25108
+100
+Bootstrapped confidence intervals were Upper = 0.037, Lower = -0.043
+Analyzing 5 - 10
+r = -0.025, p = 0.37804
+100
+Bootstrapped confidence intervals were Upper = 0.058, Lower = -0.068
+Analyzing 5 - 15
+r = -0.029, p = 0.43002
+100
+Bootstrapped confidence intervals were Upper = 0.063, Lower = -0.070
+Analyzing 5 - 20
+r = -0.011, p = 0.81192
+100
+Bootstrapped confidence intervals were Upper = 0.108, Lower = -0.108
+Analyzing 5 - 25
+r = -0.060, p = 0.28259
+100
+Bootstrapped confidence intervals were Upper = 0.119, Lower = -0.133
+Analyzing 10 - 5
+r = -0.019, p = 0.49361
+100
+Bootstrapped confidence intervals were Upper = 0.052, Lower = -0.050
+Analyzing 10 - 10
+r = -0.032, p = 0.39042
+100
+Bootstrapped confidence intervals were Upper = 0.074, Lower = -0.068
+Analyzing 10 - 15
+r = -0.027, p = 0.55939
+100
+Bootstrapped confidence intervals were Upper = 0.089, Lower = -0.094
+Analyzing 10 - 20
+r = -0.010, p = 0.86188
+100
+Bootstrapped confidence intervals were Upper = 0.097, Lower = -0.105
+Analyzing 10 - 25
+r = -0.026, p = 0.68279
+100
+Bootstrapped confidence intervals were Upper = 0.150, Lower = -0.100
+Analyzing 15 - 5
+r = -0.039, p = 0.29310
+100
+Bootstrapped confidence intervals were Upper = 0.083, Lower = -0.069
+Analyzing 15 - 10
+r = -0.056, p = 0.22656
+100
+Bootstrapped confidence intervals were Upper = 0.093, Lower = -0.083
+Analyzing 15 - 15
+r = -0.039, p = 0.48263
+100
+Bootstrapped confidence intervals were Upper = 0.109, Lower = -0.139
+Analyzing 15 - 20
+r = -0.035, p = 0.58555
+100
+Bootstrapped confidence intervals were Upper = 0.146, Lower = -0.133
+Analyzing 15 - 25
+r = 0.043, p = 0.55986
+100
+Bootstrapped confidence intervals were Upper = 0.130, Lower = -0.124
+Analyzing 20 - 5
+r = -0.101, p = 0.02825
+100
+Bootstrapped confidence intervals were Upper = 0.105, Lower = -0.076
+Analyzing 20 - 10
+r = -0.099, p = 0.07646
+100
+Bootstrapped confidence intervals were Upper = 0.109, Lower = -0.101
+Analyzing 20 - 15
+r = -0.068, p = 0.29061
+100
+Bootstrapped confidence intervals were Upper = 0.127, Lower = -0.145
+Analyzing 20 - 20
+r = 0.016, p = 0.82321
+100
+Bootstrapped confidence intervals were Upper = 0.139, Lower = -0.150
+Analyzing 20 - 25
+r = -0.056, p = 0.49960
+100
+Bootstrapped confidence intervals were Upper = 0.125, Lower = -0.194
+Analyzing 25 - 5
+r = -0.104, p = 0.06173
+100
+Bootstrapped confidence intervals were Upper = 0.103, Lower = -0.100
+Analyzing 25 - 10
+r = -0.110, p = 0.08762
+100
+Bootstrapped confidence intervals were Upper = 0.127, Lower = -0.178
+Analyzing 25 - 15
+r = 0.002, p = 0.98027
+100
+Bootstrapped confidence intervals were Upper = 0.109, Lower = -0.158
+Analyzing 25 - 20
+r = -0.052, p = 0.53378
+100
+Bootstrapped confidence intervals were Upper = 0.166, Lower = -0.144
+Analyzing 25 - 25
+r = -0.084, p = 0.35837
+100
+Bootstrapped confidence intervals were Upper = 0.200, Lower = -0.172
