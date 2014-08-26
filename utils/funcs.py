@@ -48,12 +48,9 @@ def loadData(location):
     data=json.load(fh)
     return [[data[k][l][0] for l in collections.OrderedDict(sorted(data[k].items()))] for k in data]
     
-def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2):
+def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = False):
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
-    print 'FUCKING HELL'
-    print
-    print
     plt.close('all')
     Z_obs = np.zeros((len(windowSizes1),len(windowSizes2)))
     Z_lower = np.zeros((len(windowSizes1),len(windowSizes2)))
@@ -103,12 +100,16 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2):
     ax = fig1.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_obs, rstride=1, cstride=1)
     #ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
-    
+    if figureName != False:
+        savefig(outfolder+'/cor_'+figureName, bbox_inches='tight')
     fig2 = plt.figure()
     ax = fig2.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
           
-    #plt.show()
+    if figureName == False:
+        plt.show()
+    else:
+        savefig(outfolder+'/std_'+figureName, bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)

@@ -57,4 +57,4 @@ bootrec = bs.runBoot(data, iterations, windowSizes1, windowSizes2, rankFilter = 
 pickle.dump(bootrec,open(outputFolder + '/logRegress' + outputSuffix + '.p', 'wb'))
 #execfile("sup_ee_observed_varxy.py")
 
-#funcs.drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2)
+#funcs.drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2)

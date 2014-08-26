@@ -10,24 +10,31 @@ outputFolder = 'analysis1'
 outputSuffix = '_run1'
 iterations = 2
 epochmult = 40
-sys.argv = [dataFile, outputFolder, outputSuffix, iterations, epochmult]
+#sys.argv = [dataFile, outputFolder, outputSuffix, iterations, epochmult]
 
 funcs.ensurePath(outputFolder)
 
 # #Run perceptron analysis
-# execfile('ee_binaryclass/runPerceptron.py')
+# import ee_binaryclass.runPerceptron as runPerceptron
+# runPerceptron.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
 
 # #Run MLP analysis 
-# execfile('ee_binaryclass/runMLP.py')
+# import ee_binaryclass.runMLP as runMLP
+# runMLP.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
 
 # #Run local/global quit analysis with MLP
-# execfile('ee_binaryclass/lgquit_MLP.py')
+# import ee_binaryclass.lgquit_MLP as lgquit_MLP
+# lgquit_MLP.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
 
 # funcs.ensurePath(outputFolder + '/logRegress')
 # funcs.ensurePath(outputFolder + '/varMean')
 
-# execfile('ee_boot/runLogRegress.py')
-# execfile('ee_boot/runVarMean.py')
+# import ee_boot.runLogRegress as runLogRegress
+# runLogRegress.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
+
+# import ee_boot.runVarMean as runVarMean
+# runVarMean.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
 
 #Create graphs
-execfile('graphs/ee_bootGraphs.py')
+import graphs.ee_bootGraphs as ee_bootGraphs
+ee_bootGraphs.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
