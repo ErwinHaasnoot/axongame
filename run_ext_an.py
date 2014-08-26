@@ -5,7 +5,7 @@ import sys
 import os
 import utils.funcs as funcs
 
-dataFile = 'data_by_cookie_slim.json'
+dataFile = 'data_by_cookie.json'
 outputFolder = 'analysis2'
 outputSuffix = '_run1'
 iterations = 100
