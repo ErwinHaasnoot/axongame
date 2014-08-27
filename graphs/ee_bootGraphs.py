@@ -16,7 +16,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     
     #Draw varMean graph
     bootrec = pickle.load(open(outputFolder + '/varMean/varMean' + outputSuffix + '.p','rb'))
-    funcs.drawGraphs(bootrec, outputFolder + '/logRegress', windowSizes1, windowSizes2,'varMean{}.png'.format(outputSuffix))
+    funcs.drawGraphs(bootrec, outputFolder + '/varMean', windowSizes1, windowSizes2,'varMean{}.png'.format(outputSuffix))
 
 if __name__ == "__main__":
     main(datafile, outputFolder, outputSuffix, iterations, epochmult)
