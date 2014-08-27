@@ -99,17 +99,20 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     #ax.plot_wireframe(X, Y, Z_boot, rstride=1, cstride=1)
     ax = fig1.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_obs, rstride=1, cstride=1)
+    ax.set_xlabel('Size window 1')
+    ax.set_ylabel('Size window 2')
+    ax.set_zlabel('r')
     #ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
     if figureName != False:
         plt.savefig(outfolder+'/cor_'+figureName, bbox_inches='tight')
-    fig2 = plt.figure()
-    ax = fig2.add_subplot(111, projection='3d')
-    ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
+    # fig2 = plt.figure()
+    # ax = fig2.add_subplot(111, projection='3d')
+    # ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
           
-    if figureName == False:
-        plt.show()
-    else:
-        plt.savefig(outfolder+'/std_'+figureName, bbox_inches='tight')
+    # if figureName == False:
+    #     plt.show()
+    # else:
+    #     plt.savefig(outfolder+'/std_'+figureName, bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)
