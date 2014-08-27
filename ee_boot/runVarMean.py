@@ -14,8 +14,8 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     data = funcs.loadData(datafile)
     #Process X = polyfit regression test
     print 'iterations: {}\noutput folder: {}\n'.format(iterations,outputFolder)
-    processX = lambda x,x_plays: np.mean(x,axis=0)
-    processY = lambda x,x_plays: np.var(x,axis=0)
+    #processX = lambda x,x_plays: np.mean(x,axis=0)
+    #processY = lambda x,x_plays: np.var(x,axis=0)
     
     preprocess = False
     
