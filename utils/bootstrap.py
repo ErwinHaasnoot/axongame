@@ -2,11 +2,16 @@ import numpy as np
 import utils.funcs as funcs
 from scipy.stats.stats import pearsonr
 from scipy import stats
+import pickle
 #import bisect
 
 #Run bootstrap
 #Amount of samples taken is equal to amount of players in bootstrap
-def runBoot(data, runs=1000, windowSizes1 = [5], windowSizes2 = [5], rankFilter = 0, preprocess = False, processX = False, processY = False):
+def runBoot(data, runs,  outputFolder, rankFilter = 0, preprocess = False, processX = False, processY = False):
+    
+    
+    windowSizes1 = range(5,30,5)    # Sizes of attempt group 1
+    windowSizes2 = range(5,30,5)    # Sizes of attempt group 2
     bootrec=np.zeros( (1,len(windowSizes1),len(windowSizes2),runs) ) #output
     
     #If no processing steps have been added, default processX to variance and processY to mean
@@ -37,7 +42,6 @@ def runBoot(data, runs=1000, windowSizes1 = [5], windowSizes2 = [5], rankFilter 
                 second = [funcs.sampleWr(bootdata[key],n) for key in second_plays]
                 
                 # Per column, ie per player, calculate mean/variance
-                #av1 and var2 not used, commented out for now
                 x = processX(first, first_plays)
                 y = processY(second, second_plays)
             
@@ -48,5 +52,6 @@ def runBoot(data, runs=1000, windowSizes1 = [5], windowSizes2 = [5], rankFilter 
                 
                 bootrec[0,i1, i2, booti] = a
     
+    pickle.dump(bootrec,open(outputFolder + '/bootrec.p', 'wb'))
     
     return bootrec
