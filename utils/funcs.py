@@ -70,8 +70,6 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
             ylist= pickle.load(open(outfolder + '/save_a5_ylist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
             a,b = pearsonr(xlist,ylist)
             print "r = %.3f, p = %.5f" % (a,b)
-            
-            print len(curbootrec)
                     
             #now do CI for r value
             ci_upper=ssm.scoreatpercentile(curbootrec,97.5)
@@ -154,3 +152,7 @@ def ensurePath(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
+def flat_for(a, f):
+    a = a.reshape(-1)
+    for i, v in enumerate(a):
+        a[i] = f(v)

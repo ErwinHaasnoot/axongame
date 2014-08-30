@@ -2,8 +2,9 @@ import numpy as np
 import utils.funcs as funcs
 import pickle
 
-def runObs(data, windowSizes1 = [5], windowSizes2 =[5],outfolder ='.', rankFilter = 0, preprocess = False, processX = False, processY = False):
-     
+def runObs(data, outfolder ='.', rankFilter = 0, preprocess = False, processX = False, processY = False):
+    windowSizes1 = range(5,30,5)    # Sizes of attempt group 1
+    windowSizes2 = range(5,30,5)    # Sizes of attempt group 2
     if processX == False:
         processX = lambda x,x_plays: np.var(x,axis=0)
     if processY == False:

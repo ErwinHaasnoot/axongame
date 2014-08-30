@@ -71,13 +71,9 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     print 'Results:'
     print 'Mean d\' score for each quit opportunity: {}'.format([np.mean([k[i] for k in dprimes]) for i in xrange(timesize-1)])
     print 'Std : {}'.format([np.std([k[i] for k in dprimes]) for i in xrange(timesize-1)])
+    print 'Max : {}'.format([np.max([k[i] for k in dprimes]) for i in xrange(timesize-1)])
     print
     print
 
-if __name__ == "__main__":  
-    datafile = '../data_by_cookie_slim.json'
-    outputFolder = '.'
-    outputSuffix = ''
-    iterations = 10
-    epochmult = 4
-    main(datafile, outputFolder, outputSuffix, iterations, epochmult)
+if __name__ == "__main__":
+    main()
