@@ -25,7 +25,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     print
     print
     
-    return outextension
+    return [outextension]
 
 if __name__ == "__main__":
     main(datafile, outputFolder, outputSuffix, iterations, epochmult)
