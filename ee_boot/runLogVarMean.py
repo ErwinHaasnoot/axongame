@@ -13,13 +13,11 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     print 'Running log variance vs mean'
     outextension = '/logVarMean'
     outputFolder = outputFolder + outextension
+    funcs.ensurePath(outputFolder)
     print 'iterations: {}\noutput folder: {}\n'.format(iterations,outputFolder)
     data = funcs.loadData(datafile)
     #Preprocessing = taking logarithm of all data points
     preprocess = lambda x: [np.log(k) for k in x]
-    
-    funcs.ensurePath(outputFolder)
-    
     print "OBSERVED DATA"
     os.runObs(data, outputFolder, preprocess = preprocess)
     

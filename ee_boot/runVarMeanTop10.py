@@ -13,6 +13,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     outextension = '/varMeanTop10'
     outputFolder = outputFolder + outextension
     data = funcs.loadData(datafile)
+    funcs.ensurePath(outputFolder)
     print 'iterations: {}\noutput folder: {}\n'.format(iterations,outputFolder)
     
     print "OBSERVED DATA"

@@ -5,7 +5,7 @@ import sys
 import os
 import utils.funcs as funcs
 
-dataFile = 'data_by_cookie.json'
+dataFile = 'data_by_cookie_slim.json'
 outputFolder = 'fullAnalysisBootstrap'
 outputSuffix = '_run1'
 iterations = 100

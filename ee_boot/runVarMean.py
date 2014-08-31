@@ -12,6 +12,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuf
     print 'Running analysis of variance vs mean correlation'
     outextension = '/varMean'
     outputFolder = outputFolder + outextension
+    funcs.ensurePath(outputFolder)
     data = funcs.loadData(datafile)
     print 'iterations: {}\noutput folder: {}\n'.format(iterations,outputFolder)
     
