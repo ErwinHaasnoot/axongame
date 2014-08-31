@@ -1,4 +1,21 @@
-  File "run_ext_an.py", line 18
-    <<<<<<< HEAD
-     ^
-SyntaxError: invalid syntax
+Running log regression analysis of variance vs mean, 1st order
+iterations: 1000
+output folder: fullAnalysisBootstrap/logRegress
+
+OBSERVED DATA
+BOOTSTRAP
+
+
+Running analysis of variance vs mean correlation
+iterations: 1000
+output folder: fullAnalysisBootstrap/varMean
+
+OBSERVED DATA
+Traceback (most recent call last):
+  File "run_ext_an.py", line 36, in <module>
+    outFolder = runVarMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
+  File "/home/erwin/workspace/axongame/ee_boot/runVarMean.py", line 19, in main
+    os.runObs(data, outputFolder)
+  File "/home/erwin/workspace/axongame/utils/observed.py", line 72, in runObs
+    pickle.dump(x, open(outfolder + '/save_a5_xlist' + str(window1) + "," + str(window2) +'.p', 'wb'))
+IOError: [Errno 2] No such file or directory: 'fullAnalysisBootstrap/varMean/save_a5_xlist5,5.p'
