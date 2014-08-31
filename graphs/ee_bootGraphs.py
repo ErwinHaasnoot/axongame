@@ -14,7 +14,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolders = [], outputSuf
     
     for folder in outputFolders:
         bootrec = pickle.load(open(folder + 'bootrec.p','rb'))
-        funcs.drawGraphs(bootrec, outputFolder + '/logRegress', windowSizes1, windowSizes2, 'logRegress{}.png'.format(outputSuffix))
+        funcs.drawGraphs(bootrec, folder', windowSizes1, windowSizes2, 'logRegress{}.png'.format(outputSuffix))
 
 if __name__ == "__main__":
     main(datafile, outputFolder, outputSuffix, iterations, epochmult)
