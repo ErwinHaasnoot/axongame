@@ -33,7 +33,6 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     n = len(training_data) * epochmult
     
     print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(iterations,epochmult,outputFile)
-    
     print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))
     print 'Learning from {} samples...'.format(len(training_data))
     for i in xrange(iterations):

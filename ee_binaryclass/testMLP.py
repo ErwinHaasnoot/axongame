@@ -76,19 +76,19 @@ if __name__ == '__main__':
     # Example 5: Learning game 3 spike training data
     # -------------------------------------------------------------------------
     
-    #import scipy.stats as st
+    import scipy.stats as st
     
-    #network = MLP(10,1)
-    #l = 500000
-    #samples = np.zeros(l, dtype=[('input',  float, 10), ('output', float, 1)])
-    #samples = funcs.generateSamples(l, lambda x: 0 if x[2] < .28 else 1)
+    network = MLP(10,1)
+    l = 500000
+    samples = np.zeros(l, dtype=[('input',  float, 10), ('output', float, 1)])
+    samples = funcs.generateSamples(l, lambda x: 0 if x[2] < .28 else 1)
     
-    #out = network.learn(samples, epochs= 10000000)
-    #stepf= lambda x: 1 if x > .5 else 0
-    #test_data = [(t[0], t[1], stepf(t[2])) for t in out]
-    #percHits = np.mean([1 if t[2] == 1 else 0 for t in test_data if t[1] == 1]) # Percentage right hits
-    #falseAlarm = np.mean([1 if t[2] == 1 else 0 for t in test_data if t[1] == 0]) # Percentage false positives
-    #
-    #print 'Hit % = {}, but false alarm % = {}'.format(percHits,falseAlarm) 
-    #print network.weights  
+    out = network.learn(samples, epochs= 10000000)
+    stepf= lambda x: 1 if x > .5 else 0
+    test_data = [(t[0], t[1], stepf(t[2])) for t in out]
+    percHits = np.mean([1 if t[2] == 1 else 0 for t in test_data if t[1] == 1]) # Percentage right hits
+    falseAlarm = np.mean([1 if t[2] == 1 else 0 for t in test_data if t[1] == 0]) # Percentage false positives
+    
+    print 'Hit % = {}, but false alarm % = {}'.format(percHits,falseAlarm) 
+    print network.weights  
     

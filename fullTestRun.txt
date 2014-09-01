@@ -1,0 +1,8 @@
+Perceptron quit after 20 from 10 games with Perceptron
+0.450382
+iterations: 100
+Multiplier Samplesize Epochs: 40
+output file: fullTestRun/runPerceptronArtificial.p
+
+Overall plays over 20 plays: 0.450382
+Learning from 500000 samples...
