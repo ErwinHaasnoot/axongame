@@ -6,7 +6,7 @@ import pickle
 def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iterations = 10, epochmult = 4):
     
     filename = 'runMLP'
-    outputFile = '{}/{}{}.p'.format(outputFolder,filename)
+    outputFile = '{}/{}.p'.format(outputFolder,filename)
     data = funcs.loadData(datafile)
     
     #Filter away bottom 75%
