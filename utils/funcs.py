@@ -48,7 +48,7 @@ def loadData(location):
     data=json.load(fh)
     return [[data[k][l][0] for l in collections.OrderedDict(sorted(data[k].items()))] for k in data]
     
-def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = False):
+def drawGraphs(bootrec, outFolder, bootName,  windowSizes1, windowSizes2, figureName = False):
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
     plt.close('all')
@@ -58,7 +58,7 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     Z_upper = np.zeros((len(windowSizes1),len(windowSizes2)))
     Z_std = np.zeros((len(windowSizes1),len(windowSizes2)))
     
-    #bootrec=pickle.load(open('save_a5_boot_bootrec_varxy.p', 'rb'))
+    currentFolder = outFolder + '/' + bootName
     
     for i1 in xrange(len(windowSizes1)):
         for i2 in xrange(len(windowSizes2)):
@@ -66,8 +66,8 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
             groupn_j = windowSizes2[i2]
             curbootrec=bootrec[0,i1,i2]
             print "Analyzing %i - %i" % (groupn_i,groupn_j)
-            xlist= pickle.load(open(outfolder + '/save_a5_xlist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
-            ylist= pickle.load(open(outfolder + '/save_a5_ylist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
+            xlist= pickle.load(open(currentFolder + '/save_a5_xlist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
+            ylist= pickle.load(open(currentFolder + '/save_a5_ylist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
             a,b = pearsonr(xlist,ylist)
             print "r = %.3f, p = %.5f" % (a,b)
                     
@@ -93,8 +93,7 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     Z_p = [[st.norm.sf((Z_obs[i][j] - Z_boot[i][j])/Z_std[i][j]) for j in range(len(windowSizes1))] for i in range(len(windowSizes1))]
     
     fig1 = plt.figure()
-    #ax = fig.add_subplot(111, projection='3d')
-    #ax.plot_wireframe(X, Y, Z_boot, rstride=1, cstride=1)
+    
     ax = fig1.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_obs, rstride=1, cstride=1)
     ax.set_xlabel('Size window 1')
@@ -102,7 +101,17 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     ax.set_zlabel('r')
     #ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
     if figureName != False:
-        plt.savefig(outfolder+'/cor_'+figureName, bbox_inches='tight')
+        plt.savefig('{}/{}_corObs.png'.format(currentFolder,bootName), bbox_inches='tight')
+        
+    fig2 = plt.figure()
+    
+    ax = fig2.add_subplot(111, projection='3d')
+    ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
+    ax.set_xlabel('Size window 1')
+    ax.set_ylabel('Size window 2')
+    ax.set_zlabel('r')
+    if figureName != False:
+        plt.savefig('{}/{}_corBoot.png'.format(currentFolder,bootName), bbox_inches='tight')
     # fig2 = plt.figure()
     # ax = fig2.add_subplot(111, projection='3d')
     # ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
@@ -110,7 +119,7 @@ def drawGraphs(bootrec, outfolder, windowSizes1, windowSizes2, figureName = Fals
     # if figureName == False:
     #     plt.show()
     # else:
-    #     plt.savefig(outfolder+'/std_'+figureName, bbox_inches='tight')
+    #     plt.savefig('{}/{}_corStd.png'.format(currentFolder,bootName), bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)
