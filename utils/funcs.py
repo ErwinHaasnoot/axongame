@@ -48,9 +48,12 @@ def loadData(location):
     data=json.load(fh)
     return [[data[k][l][0] for l in collections.OrderedDict(sorted(data[k].items()))] for k in data]
     
-def drawGraphs(bootrec, outFolder, bootName,  windowSizes1, windowSizes2, figureName = False):
-    import matplotlib.pyplot as plt
+def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
+    import matplotlib
+    matplotlib.use('SVG')
+    from matplotlib import pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
+    bootrec = pickle.load(open('{}/{}/bootrec.p'.format(outFolder,bootName),'rb'))
     plt.close('all')
     Z_obs = np.zeros((len(windowSizes1),len(windowSizes2)))
     Z_lower = np.zeros((len(windowSizes1),len(windowSizes2)))
@@ -94,32 +97,45 @@ def drawGraphs(bootrec, outFolder, bootName,  windowSizes1, windowSizes2, figure
     
     fig1 = plt.figure()
     
+    fontsize = 16
     ax = fig1.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_obs, rstride=1, cstride=1)
-    ax.set_xlabel('Size window 1')
-    ax.set_ylabel('Size window 2')
-    ax.set_zlabel('r')
-    #ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
-    if figureName != False:
-        plt.savefig('{}/{}_corObs.png'.format(currentFolder,bootName), bbox_inches='tight')
+    fig1.suptitle('Observed Correlations', fontsize=20)
+    ax.set_xlabel('Size window 1', fontsize = fontsize)
+    ax.set_ylabel('Size window 2', fontsize = fontsize)
+    ax.set_zlabel('r', fontsize = fontsize)
+    ax.set_zlim(bottom = -1, top = 1)
+    
+    plt.savefig('{}/figures/{}_corObs.png'.format(outFolder,bootName), bbox_inches='tight')
         
     fig2 = plt.figure()
     
     ax = fig2.add_subplot(111, projection='3d')
     ax.plot_surface(X, Y, Z_boot, rstride=1, cstride=1)
-    ax.set_xlabel('Size window 1')
-    ax.set_ylabel('Size window 2')
-    ax.set_zlabel('r')
-    if figureName != False:
-        plt.savefig('{}/{}_corBoot.png'.format(currentFolder,bootName), bbox_inches='tight')
-    # fig2 = plt.figure()
-    # ax = fig2.add_subplot(111, projection='3d')
-    # ax.plot_surface(X, Y, Z_std, rstride=1, cstride=1)
-          
-    # if figureName == False:
-    #     plt.show()
-    # else:
-    #     plt.savefig('{}/{}_corStd.png'.format(currentFolder,bootName), bbox_inches='tight')
+    fig2.suptitle('Bootstrap Average Correlations', fontsize=20)
+    ax.set_xlabel('Size window 1', fontsize = fontsize)
+    ax.set_ylabel('Size window 2', fontsize = fontsize)
+    ax.set_zlabel('r', fontsize = fontsize)
+    ax.set_zlim(bottom = -1, top = 1)
+    
+    plt.savefig('{}/figures/{}_corBoot.png'.format(outFolder,bootName), bbox_inches='tight')
+    
+def drawPerceptronWeights(outFolder, perceptronName):
+    import matplotlib
+    matplotlib.use('SVG')
+    from matplotlib import pyplot as plt
+    percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb'))
+    
+    meanweights = np.mean([normalize(k[3]) for k in percrec], axis=0)
+    
+    fontsize = 16
+    fig, ax = plt.subplots()
+    plt.ylim([-1,1])
+    plt.plot(meanweights, linewidth=2.0)
+    fig.suptitle('Perceptron - Average Weights per Attempt', fontsize = 20)
+    ax.set_ylabel('Average Weight', fontsize = fontsize)
+    ax.set_xlabel('Attempt Nr.', fontsize = fontsize)
+    plt.savefig('{}/figures/{}_weights.svg'.format(outFolder,perceptronName), bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)

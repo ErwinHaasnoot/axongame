@@ -5,12 +5,12 @@ import json
 import collections
 import pickle
 
-def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuffix = '', iterations = 10, epochmult = 4):
+def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iterations = 10, epochmult = 4):
     print 'Local vs Global quit analysis with MLP'
     timethresh = 2
     timesize = 10
     filename = 'lgquit'
-    outputFile = '{}/{}{}.p'.format(outputFolder,filename,outputSuffix)
+    outputFile = '{}/{}.p'.format(outputFolder,filename)
     
     print 'Quit locations: {}\ntime threshold: {} hours\niterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}'.format(timesize-1,timethresh,iterations,epochmult,outputFile)
     
