@@ -5,8 +5,8 @@ import utils.funcs as funcs
 def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iterations = 10, epochmult = 4):
     
     
-    bootFolders = ['logVarMean','varMeanTop10','varMean','regressMean']
-    #bootFolders = []
+    #bootFolders = ['logVarMean','varMeanTop10','varMean','regressMean']
+    bootFolders = []
     perceptrons = ['runPerceptronReal','runPerceptronArtificial']
     
     #Set windowsizes

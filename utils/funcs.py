@@ -50,7 +50,7 @@ def loadData(location):
     
 def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     import matplotlib
-    matplotlib.use('SVG')
+    matplotlib.use('PDF')
     from matplotlib import pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
     bootrec = pickle.load(open('{}/{}/bootrec.p'.format(outFolder,bootName),'rb'))
@@ -118,11 +118,11 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     ax.set_zlabel('r', fontsize = fontsize)
     ax.set_zlim(bottom = -1, top = 1)
     
-    plt.savefig('{}/figures/{}_corBoot.png'.format(outFolder,bootName), bbox_inches='tight')
+    plt.savefig('{}/figures/{}_corBoot.pdf'.format(outFolder,bootName), bbox_inches='tight')
     
 def drawPerceptronWeights(outFolder, perceptronName):
     import matplotlib
-    matplotlib.use('SVG')
+    matplotlib.use('PDF')
     from matplotlib import pyplot as plt
     percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb'))
     
@@ -135,7 +135,7 @@ def drawPerceptronWeights(outFolder, perceptronName):
     fig.suptitle('Perceptron - Average Weights per Attempt', fontsize = 20)
     ax.set_ylabel('Average Weight', fontsize = fontsize)
     ax.set_xlabel('Attempt Nr.', fontsize = fontsize)
-    plt.savefig('{}/figures/{}_weights.svg'.format(outFolder,perceptronName), bbox_inches='tight')
+    plt.savefig('{}/figures/{}_weights.pdf'.format(outFolder,perceptronName), bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)
