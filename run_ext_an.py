@@ -6,13 +6,13 @@ import os
 import utils.funcs as funcs
 
 dataFile = 'data_by_cookie.json'
-outputFolder = 'fullAnalysisBootstrap'
+outFolder = 'fullAnalysisBootstrap'
 outputSuffix = '_run1'
 iterations = 100
 epochmult = 40
 #sys.argv = [dataFile, outputFolder, outputSuffix, iterations, epochmult]
 
-funcs.ensurePath(outputFolder)
+funcs.ensurePath(outFolder)
 
 #Run perceptron analysis
 # import ee_binaryclass.runPerceptron as runPerceptron
@@ -27,19 +27,19 @@ funcs.ensurePath(outputFolder)
 # lgquit_MLP.main(dataFile, outputFolder, outputSuffix, iterations, epochmult)
 
 
-import ee_boot.runRegressMean as runRegressMean
-runRegressMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
+# import ee_boot.runRegressMean as runRegressMean
+# runRegressMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
 
-import ee_boot.runVarMean as runVarMean
-runVarMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
+# import ee_boot.runVarMean as runVarMean
+# runVarMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
 
-import ee_boot.runVarMeanTop10 as runVarMeanTop10
-runVarMeanTop10.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
+# import ee_boot.runVarMeanTop10 as runVarMeanTop10
+# runVarMeanTop10.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
 
-import ee_boot.runLogVarMean as runLogVarMean
-runLogVarMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
+# import ee_boot.runLogVarMean as runLogVarMean
+# runLogVarMean.main(dataFile, outputFolder, outputSuffix, iterations*10, epochmult)
 
 #Create graphs
-outputFolders= ['logVarMean','varMeanTop10','varMean','regressMean']
-#import graphs.ee_bootGraphs as ee_bootGraphs
-#ee_bootGraphs.main(dataFile, outputFolders, outputSuffix, iterations, epochmult)
+bootFolders = ['logVarMean','varMeanTop10','varMean','regressMean']
+import graphs.ee_bootGraphs as ee_bootGraphs
+ee_bootGraphs.main(dataFile, outFolder, bootFolders, iterations, epochmult)

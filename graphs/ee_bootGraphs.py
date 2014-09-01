@@ -3,7 +3,7 @@
 import utils.funcs as funcs
 import pickle
 #Draw graphs for logRegress
-def main(datafile = '../data_by_cookie_slim.json', outputFolders = [], outputSuffix = '', iterations = 10, epochmult = 4):
+def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', bootFolders = '', iterations = 10, epochmult = 4):
     
     
     #Set windowsizes
@@ -12,9 +12,9 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolders = [], outputSuf
     
     #Draw logregress graph
     
-    for folder in outputFolders:
-        bootrec = pickle.load(open(folder + 'bootrec.p','rb'))
-        funcs.drawGraphs(bootrec, folder', windowSizes1, windowSizes2, 'logRegress{}.png'.format(outputSuffix))
+    for folder in bootFolders:
+        bootrec = pickle.load(open(outputFolder + '/' + folder + 'bootrec.p','rb'))
+        funcs.drawGraphs(bootrec, outputFolder, folder, windowSizes1, windowSizes2)
 
 if __name__ == "__main__":
     main(datafile, outputFolder, outputSuffix, iterations, epochmult)
