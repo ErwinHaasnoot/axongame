@@ -6,7 +6,7 @@ import os
 import utils.funcs as funcs
 
 dataFile = 'data_by_cookie.json'
-outFolder = 'fullRun'
+outFolder = 'fullTestRun'
 iterations = 100
 epochmult = 40
 

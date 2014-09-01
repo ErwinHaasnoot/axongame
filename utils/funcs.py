@@ -5,6 +5,7 @@ import numpy as np
 import scipy.stats as st
 from scipy.stats.stats import pearsonr
 import scipy.stats.mstats as ssm
+import scipy.stats
 import random
 #####functions-------------------------------------
 def sampleWr(population, k):
@@ -50,7 +51,7 @@ def loadData(location):
     
 def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     import matplotlib
-    matplotlib.use('SVG')
+    matplotlib.use('pdf')
     from matplotlib import pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
     bootrec = pickle.load(open('{}/{}/bootrec.p'.format(outFolder,bootName),'rb'))
@@ -68,17 +69,19 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
             groupn_i = windowSizes1[i1]       
             groupn_j = windowSizes2[i2]
             curbootrec=bootrec[0,i1,i2]
+            print
             print "Analyzing %i - %i" % (groupn_i,groupn_j)
             xlist= pickle.load(open(currentFolder + '/save_a5_xlist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
             ylist= pickle.load(open(currentFolder + '/save_a5_ylist' + str(groupn_i) + "," + str(groupn_j) +'.p', 'rb'))
             a,b = pearsonr(xlist,ylist)
-            print "r = %.3f, p = %.5f" % (a,b)
                     
             #now do CI for r value
             ci_upper=ssm.scoreatpercentile(curbootrec,97.5)
             ci_lower=ssm.scoreatpercentile(curbootrec,02.5)
             ci_mean=np.mean(curbootrec)
             ci_std=np.var(curbootrec)
+            print scipy.stats.norm(ci_mean,ci_std).cdf(abs(a))
+            print "r = %.3f, p = %.5f, %s of confidence interval" % (a,b, 'outside' if a > ci_upper or a < ci_lower else 'inside')
             print "Bootstrapped confidence intervals were Upper = %0.3f, Lower = %0.3f" % (ci_upper,ci_lower)
             
             Z_obs[i1][i2] = a 
@@ -87,9 +90,7 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
             Z_boot[i1][i2] = ci_mean
             Z_std[i1][i2] = ci_std
             
-    
-        ##Build data for plots
-        ##bootrec = pickle.load(open('save_a5_boot_bootrec_varxy.p', 'rb'))
+            
     X = [[k for j in windowSizes2] for k in windowSizes1]  
     Y = [[j for j in windowSizes2] for k in windowSizes1]
     #One-sided Z value to p value
@@ -106,7 +107,7 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     ax.set_zlabel('r', fontsize = fontsize)
     ax.set_zlim(bottom = -1, top = 1)
     
-    plt.savefig('{}/figures/{}_corObs.png'.format(outFolder,bootName), bbox_inches='tight')
+    plt.savefig('{}/figures/{}_corObs.pdf'.format(outFolder,bootName), bbox_inches='tight')
         
     fig2 = plt.figure()
     
@@ -118,12 +119,13 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     ax.set_zlabel('r', fontsize = fontsize)
     ax.set_zlim(bottom = -1, top = 1)
     
-    plt.savefig('{}/figures/{}_corBoot.png'.format(outFolder,bootName), bbox_inches='tight')
+    plt.savefig('{}/figures/{}_corBoot.pdf'.format(outFolder,bootName), bbox_inches='tight')
     
 def drawPerceptronWeights(outFolder, perceptronName):
     import matplotlib
-    matplotlib.use('SVG')
+    matplotlib.use('pdf')
     from matplotlib import pyplot as plt
+    
     percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb'))
     
     meanweights = np.mean([normalize(k[3]) for k in percrec], axis=0)
@@ -135,7 +137,7 @@ def drawPerceptronWeights(outFolder, perceptronName):
     fig.suptitle('Perceptron - Average Weights per Attempt', fontsize = 20)
     ax.set_ylabel('Average Weight', fontsize = fontsize)
     ax.set_xlabel('Attempt Nr.', fontsize = fontsize)
-    plt.savefig('{}/figures/{}_weights.svg'.format(outFolder,perceptronName), bbox_inches='tight')
+    plt.savefig('{}/figures/{}_weights.pdf'.format(outFolder,perceptronName), bbox_inches='tight')
     
 def normalize(v):
     norm= np.linalg.norm(v)

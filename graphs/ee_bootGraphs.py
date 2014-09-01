@@ -6,7 +6,6 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     
     
     bootFolders = ['logVarMean','varMeanTop10','varMean','regressMean']
-    #bootFolders = []
     perceptrons = ['runPerceptronReal','runPerceptronArtificial']
     
     #Set windowsizes
