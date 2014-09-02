@@ -9,7 +9,7 @@ import utils.observed as os
 
 def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuffix = '', iterations = 10, epochmult = 4):
     #Load data
-    print 'Running analysis of variance vs mean correlation'
+    print 'Running analysis of variance vs max correlation'
     outextension = '/varMax'
     outputFolder = outputFolder + outextension
     funcs.ensurePath(outputFolder)

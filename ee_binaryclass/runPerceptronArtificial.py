@@ -30,7 +30,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     out = []
     stepf = lambda x: 0 if x < 0 else 1
     #training_data = [(np.array(k[:s]),0 if len(k) < 2*s else 1) for k in data if len(k) >= s]
-    n = len(training_data)
+    n = len(training_data) * epochmult
     
     print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(iterations,epochmult,outputFile)
     print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))

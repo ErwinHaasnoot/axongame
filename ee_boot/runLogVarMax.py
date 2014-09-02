@@ -10,7 +10,7 @@ import utils.observed as os
 
 def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuffix = '', iterations = 10, epochmult = 4):
     #Load data
-    print 'Running log variance vs mean'
+    print 'Running log variance vs max'
     outextension = '/logVarMax'
     outputFolder = outputFolder + outextension
     funcs.ensurePath(outputFolder)

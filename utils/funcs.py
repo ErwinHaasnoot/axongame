@@ -49,11 +49,12 @@ def loadData(location):
     data=json.load(fh)
     return [[data[k][l][0] for l in collections.OrderedDict(sorted(data[k].items()))] for k in data]
     
-def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
+def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2, zBottom = -1, zTop = 1):
     import matplotlib
     matplotlib.use('PDF')
     from matplotlib import pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
+    print 'Drawing bootstrap graphs for: {}'.format(bootName)
     bootrec = pickle.load(open('{}/{}/bootrec.p'.format(outFolder,bootName),'rb'))
     plt.close('all')
     Z_obs = np.zeros((len(windowSizes1),len(windowSizes2)))
@@ -105,7 +106,7 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     ax.set_xlabel('Size window 1', fontsize = fontsize)
     ax.set_ylabel('Size window 2', fontsize = fontsize)
     ax.set_zlabel('r', fontsize = fontsize)
-    ax.set_zlim(bottom = -1, top = 1)
+    ax.set_zlim(bottom = zBottom, top = zTop)
     
     plt.savefig('{}/figures/{}_corObs.pdf'.format(outFolder,bootName), bbox_inches='tight')
         
@@ -117,7 +118,7 @@ def drawGraphs(outFolder, bootName,  windowSizes1, windowSizes2):
     ax.set_xlabel('Size window 1', fontsize = fontsize)
     ax.set_ylabel('Size window 2', fontsize = fontsize)
     ax.set_zlabel('r', fontsize = fontsize)
-    ax.set_zlim(bottom = -1, top = 1)
+    ax.set_zlim(bottom = zBottom, top = zTop)
     
     plt.savefig('{}/figures/{}_corBoot.pdf'.format(outFolder,bootName), bbox_inches='tight')
     
@@ -125,6 +126,7 @@ def drawPerceptronWeights(outFolder, perceptronName):
     import matplotlib
     matplotlib.use('PDF')
     from matplotlib import pyplot as plt
+    print 'Drawing perceptron weight graphs for: {}'.format(perceptronName)
     
     percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb'))
     

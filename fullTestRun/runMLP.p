@@ -1,4 +1,4 @@
-(lp0
+(lp0
 (cnumpy.core.multiarray
 scalar
 p1
