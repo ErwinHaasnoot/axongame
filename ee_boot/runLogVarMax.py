@@ -11,7 +11,7 @@ import utils.observed as os
 def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', outputSuffix = '', iterations = 10, epochmult = 4):
     #Load data
     print 'Running log variance vs mean'
-    outextension = '/logVarMean'
+    outextension = '/logVarMax'
     outputFolder = outputFolder + outextension
     funcs.ensurePath(outputFolder)
     print 'iterations: {}\noutput folder: {}\n'.format(iterations,outputFolder)

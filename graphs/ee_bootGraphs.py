@@ -4,7 +4,7 @@ import utils.funcs as funcs
 #Draw graphs for logRegress
 def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iterations = 10, epochmult = 4):
     
-    bootFolders = ['logVarMean','varMeanTop10','varMean','regressMean']
+    bootFolders = ['logVarMean','varMeanTop10','varMean','regressMean','logVarMax','varMax']
     perceptrons = ['runPerceptronReal','runPerceptronArtificial']
     
     #Set windowsizes
