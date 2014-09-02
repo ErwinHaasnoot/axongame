@@ -1,20 +1,19 @@
 #savefig('explore_exploit_scatterheatmap.png', dpi=300, facecolor='w', edgecolor='w',
 #        orientation='portrait', papertype=None, format=None,
 #        transparent=False, bbox_inches='tight', pad_inches=0.1) 
-import sys
-import os
 import utils.funcs as funcs
 
+print 'Running thesis analysis...'
 dataFile = 'data_by_cookie.json'
 outFolder = 'fullRun'
 iterations = 100
 epochmult = 40
-
+print 'datafile: {}\noutfolder: {}\niterations: {}\nEpoch multiplier: {}'.format(dataFile,outFolder,iterations,epochmult)
 funcs.ensurePath(outFolder)
 
 #Run perceptron analysis
-import ee_binaryclass.runPerceptronArtificial as runPerceptronArt
-runPerceptronArt.main(dataFile, outFolder, iterations, epochmult)
+import ee_binaryclass.runPerceptronArtificial as runPerceptronArtificial
+runPerceptronArtificial.main(dataFile, outFolder, iterations, epochmult)
 import ee_binaryclass.runPerceptronReal as runPerceptron
 runPerceptron.main(dataFile, outFolder, iterations, epochmult)
 

@@ -20,25 +20,25 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     #mu = np.mean([k[:10] for k in data if len(k) >= 10],axis=0)
     
     signalf = lambda x: 0 if x[2] < 18000 else 1
-    training_data = funcs.generateSamples(500000, signalf)
+    training_data = funcs.generateSamples(50000, signalf)
     
     #Set up perceptron
     s = 10 # games
     errors = [] # errors
     eta = 0.2 # learning rate
     dPrimes = [0]*iterations #
-    endweights = []
     out = []
+    stepf = lambda x: 0 if x < 0 else 1
     #training_data = [(np.array(k[:s]),0 if len(k) < 2*s else 1) for k in data if len(k) >= s]
-    n = len(training_data) * epochmult
+    n = len(training_data)
     
     print 'iterations: {}\nMultiplier Samplesize Epochs: {}\noutput file: {}\n'.format(iterations,epochmult,outputFile)
     print 'Overall plays over 20 plays: {}'.format(np.mean([t[1] for t in training_data]))
     print 'Learning from {} samples...'.format(len(training_data))
     for i in xrange(iterations):
         #print 'Preparing training data'
+        errors = []
         w = 2 * np.random.rand(s) - 1
-        stepf = lambda x: 0 if x < 0 else 1
         
         #print 'Training perceptron - n = {} and s = {}'.format(n,s)
         for j in xrange(n):
