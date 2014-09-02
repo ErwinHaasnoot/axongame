@@ -12,18 +12,18 @@ print 'datafile: {}\noutfolder: {}\niterations: {}\nEpoch multiplier: {}'.format
 funcs.ensurePath(outFolder)
 
 #Run perceptron analysis
-# import ee_binaryclass.runPerceptronArtificial as runPerceptronArtificial
-# runPerceptronArtificial.main(dataFile, outFolder, iterations, epochmult)
-# import ee_binaryclass.runPerceptronReal as runPerceptron
-# runPerceptron.main(dataFile, outFolder, iterations, epochmult)
+import ee_binaryclass.runPerceptronArtificial as runPerceptronArtificial
+runPerceptronArtificial.main(dataFile, outFolder, iterations, epochmult)
+import ee_binaryclass.runPerceptronReal as runPerceptron
+runPerceptron.main(dataFile, outFolder, iterations, epochmult)
 
-# #Run MLP analysis 
-# import ee_binaryclass.runMLP as runMLP
-# runMLP.main(dataFile, outFolder, iterations, epochmult)
+#Run MLP analysis 
+import ee_binaryclass.runMLP as runMLP
+runMLP.main(dataFile, outFolder, iterations, epochmult)
 
-# #Run local/global quit analysis with MLP
-# import ee_binaryclass.lgquit_MLP as lgquit_MLP
-# lgquit_MLP.main(dataFile, outFolder, iterations, epochmult)
+#Run local/global quit analysis with MLP
+import ee_binaryclass.lgquit_MLP as lgquit_MLP
+lgquit_MLP.main(dataFile, outFolder, iterations, epochmult)
 
 
 # import ee_boot.runRegressMean as runRegressMean
