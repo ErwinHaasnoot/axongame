@@ -2,12 +2,32 @@ Running thesis analysis...
 datafile: data_by_cookie.json
 outfolder: fullRun
 iterations: 100
- epochs: 40
+Epoch multiplier: 40
 Perceptron quit after 20 from 10 games with Perceptron
-0.450242
+0.45068
 iterations: 100
 Multiplier Samplesize Epochs: 40
 output file: fullRun/runPerceptronArtificial.p
 
-Overall plays over 20 plays: 0.450242
-Learning from 500000 samples...
+Overall plays over 20 plays: 0.45068
+Learning from 50000 samples...
+
+Results:
+Mean d' score for each quit opportunity: [0.84037942664418219]
+Std : [0.12981719026337746]
+Max : [0.99991124522943109]
+
+
+Perceptron quit after 20 from 10 games with Perceptron
+iterations: 100
+Multiplier Samplesize Epochs: 40
+output file: fullRun/runPerceptronReal.p
+
+Overall plays over 20 plays: 0.275967770187
+Learning from 45672 samples...
+Traceback (most recent call last):
+  File "run_ext_an.py", line 18, in <module>
+    runPerceptron.main(dataFile, outFolder, iterations, epochmult)
+  File "/home/erwin/workspace/axongame/ee_binaryclass/runPerceptronReal.py", line 49, in main
+    errors.append(error)
+MemoryError

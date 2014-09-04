@@ -25,18 +25,18 @@ runMLP.main(dataFile, outFolder, iterations, epochmult)
 import ee_binaryclass.lgquit_MLP as lgquit_MLP
 lgquit_MLP.main(dataFile, outFolder, iterations, epochmult)
 
+#Run bootstrap analyses
+import ee_boot.runRegressMean as runRegressMean
+runRegressMean.main(dataFile, outFolder, iterations*10, epochmult)
 
-# import ee_boot.runRegressMean as runRegressMean
-# runRegressMean.main(dataFile, outFolder, iterations*10, epochmult)
+import ee_boot.runVarMean as runVarMean
+runVarMean.main(dataFile, outFolder, iterations*10, epochmult)
 
-# import ee_boot.runVarMean as runVarMean
-# runVarMean.main(dataFile, outFolder, iterations*10, epochmult)
+import ee_boot.runVarMeanTop10 as runVarMeanTop10
+runVarMeanTop10.main(dataFile, outFolder, iterations*10, epochmult)
 
-# import ee_boot.runVarMeanTop10 as runVarMeanTop10
-# runVarMeanTop10.main(dataFile, outFolder, iterations*10, epochmult)
-
-# import ee_boot.runLogVarMean as runLogVarMean
-# runLogVarMean.main(dataFile, outFolder, iterations*10, epochmult)
+import ee_boot.runLogVarMean as runLogVarMean
+runLogVarMean.main(dataFile, outFolder, iterations*10, epochmult)
 
 #Create graphs
 import graphs.ee_bootGraphs as ee_bootGraphs

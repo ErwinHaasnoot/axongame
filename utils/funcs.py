@@ -126,13 +126,32 @@ def drawPerceptronWeights(outFolder, perceptronName):
     import matplotlib
     matplotlib.use('PDF')
     from matplotlib import pyplot as plt
-    print 'Drawing perceptron weight graphs for: {}'.format(perceptronName)
+    print 'Drawing perceptron weight graphs for: {}'.format(perceptronName)  
+    percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb')) 
+    perclen = len(percrec[0][2])
     
-    percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb'))
+    #Set NaN to 0 (tends to be Inf - Inf, so 0 makes sense). -Inf to 0 as well, 
+    #usually is due to small but negligible difference in hit rate and false alarm rate,
+    #that cause false alarm rate to become exactly 0 and hit rate to be slightly above it.
+    dprimes = [[0 if np.isnan(i) or (np.isinf(i) and i < 0)  else i for i in k[2]] for k in percrec]
+      
+    print
+    print 'Results:'
+    percMax = [np.max([k[i] for k in dprimes]) for i in xrange(perclen)]
+    print 'Max : {}'.format(percMax)
+    if np.any(np.isinf(percMax)):
+	print 'Max is Infinite, no point calculating mean'
+    else:
+	print 'Mean d\' score for each quit opportunity: {}'.format([np.mean([k[i] for k in dprimes]) for i in xrange(perclen)])
+	print 'Std : {}'.format([np.std([k[i] for k in dprimes]) for i in xrange(perclen)])
+	print
+	print
+    
     
     meanweights = np.mean([normalize(k[3]) for k in percrec], axis=0)
     
     fontsize = 16
+
     fig, ax = plt.subplots()
     plt.ylim([-1,1])
     plt.plot(meanweights, linewidth=2.0)
