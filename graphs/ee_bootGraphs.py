@@ -17,5 +17,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     
     funcs.drawPerceptronWeights(outputFolder, 'runPerceptronReal')
     funcs.drawPerceptronWeights(outputFolder, 'runPerceptronArtificial')
+    #funcs.drawPerceptronWeights(outputFolder, 'runMLP')
+    #funcs.drawPerceptronWeights(outputFolder, 'lgquit')
 if __name__ == "__main__":
     main()

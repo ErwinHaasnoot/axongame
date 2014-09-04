@@ -24,7 +24,6 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     
     #Set up perceptron
     s = 10 # games
-    errors = [] # errors
     eta = 0.2 # learning rate
     dPrimes = [0]*iterations #
     out = []
@@ -37,7 +36,6 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
     print 'Learning from {} samples...'.format(len(training_data))
     for i in xrange(iterations):
         #print 'Preparing training data'
-        errors = []
         w = 2 * np.random.rand(s) - 1
         
         #print 'Training perceptron - n = {} and s = {}'.format(n,s)
@@ -45,9 +43,7 @@ def main(datafile = '../data_by_cookie_slim.json', outputFolder = '.', iteration
             x, expected = choice(training_data)
             result = np.dot(w,x)
             error = expected - stepf(result)
-            errors.append(error)
             w += eta * error * funcs.normalize(x)
-            #w = w / np.linalg.norm(w) #normalize
         #print 'Training completed'
         #print 'Testing performance'
         #test_data consists of rows (x, expected, result) or (x, signal, response)
