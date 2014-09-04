@@ -129,8 +129,9 @@ def drawPerceptronWeights(outFolder, perceptronName):
     print 'Drawing perceptron weight graphs for: {}'.format(perceptronName)
     
     percrec = pickle.load(open('{}/{}.p'.format(outFolder,perceptronName),'rb'))
-    
     meanweights = np.mean([normalize(k[3]) for k in percrec], axis=0)
+    
+    printBinClassStats(percrec)
     
     fontsize = 16
     fig, ax = plt.subplots()
@@ -140,6 +141,20 @@ def drawPerceptronWeights(outFolder, perceptronName):
     ax.set_ylabel('Average Weight', fontsize = fontsize)
     ax.set_xlabel('Attempt Nr.', fontsize = fontsize)
     plt.savefig('{}/figures/{}_weights.pdf'.format(outFolder,perceptronName), bbox_inches='tight')
+    
+def printBinClassStats(percrec):
+    
+    
+    dprimes = [[0 if np.isnan(i) or np.isinf(i)  else i for i in k[2]] for k in percrec]   
+    dlen = len(dprimes[0])
+    print
+    print 'Results:'
+    print 'Mean d\' score for each quit opportunity: {}'.format([np.mean([k[i] for k in dprimes]) for i in xrange(dlen)])
+    print 'Std : {}'.format([np.std([k[i] for k in dprimes]) for i in xrange(dlen)])
+    print 'Max : {}'.format([np.max([k[i] for k in dprimes]) for i in xrange(dlen)])
+    print
+    print
+    
     
 def normalize(v):
     norm= np.linalg.norm(v)
